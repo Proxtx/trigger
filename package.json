@@ -1,0 +1,26 @@
+{
+  "name": "trigger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Proxtx/trigger.git"
+  },
+  "author": "Proxtx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Proxtx/trigger/issues"
+  },
+  "homepage": "https://github.com/Proxtx/trigger#readme",
+  "dependencies": {
+    "@proxtx/combine-rest": "^1.0.4",
+    "@proxtx/config": "^1.0.2",
+    "@proxtx/framework": "^1.5.3",
+    "@proxtx/material": "^1.1.5"
+  }
+}
