@@ -4,6 +4,8 @@ let actionElem = document.getElementById("action");
 let newButton = document.getElementById("newButton");
 let contentWrap = document.getElementById("contentWrap");
 
+const flows = await actions.getFlows(cookie.pwd);
+
 const applyActionDefinitions = (actionDefinitions) => {
   for (let name in actionDefinitions) {
     let elem = createActionFromDefinition(name, actionDefinitions[name]);
@@ -31,12 +33,24 @@ const createActionFromDefinition = (name, definition) => {
     location.pathname = "/trigger";
   });
 
+  let flowsElem = elem.getElementsByClassName("flows")[0];
+  applyOptionArray(flowsElem, flows);
+  flowsElem.value = definition.flow;
+  flowsElem.addEventListener("change", async () => {
+    definition.flow = flowsElem.value;
+    await saveAction(name, definition);
+  });
+
   return elem;
 };
 
 const renameAction = async (oldName, newName, definition) => {
   await actions.deleteAction(cookie.pwd, oldName);
   await actions.setAction(cookie.pwd, newName, definition);
+};
+
+const saveAction = async (name, definition) => {
+  await actions.setAction(cookie.pwd, name, definition);
 };
 
 const applyOptionArray = async (elem, options) => {
