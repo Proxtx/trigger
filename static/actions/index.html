@@ -10,21 +10,24 @@
   </head>
   <body>
     <div class="appBar">
-      <m-text><b>Unify - Flows - Triggers</b></m-text>
+      <m-text><b>Unify - Flows - Actions</b></m-text>
     </div>
-    <div class="listContent">
-      <div class="box">
+    <div class="listContent" id="contentWrap">
+      <m-button stretch="true" id="newButton">New</m-button>
+    </div>
+    <div class="hidden">
+      <div class="box" id="action">
         <input
           type="text"
-          class="input titleInput"
+          class="input titleInput actionName"
           value="Light Off on Home Leave"
         />
         <m-text>When</m-text>
         <div class="triggerWrap">
           <div type="text" class="input textSecondary">
-            <m-text>Nicolas leaves Home</m-text>
+            <m-text class="triggerText">Nicolas leaves Home</m-text>
           </div>
-          <img src="../lib/img/arrow.svg" />
+          <img class="triggerArrow" src="../lib/img/arrow.svg" />
         </div>
         <m-text>Then run</m-text>
         <select class="input textSecondary">
@@ -34,7 +37,6 @@
           <m-button class="materialSecondary">Delete</m-button>
         </div>
       </div>
-      <m-button stretch="true">New</m-button>
     </div>
     <script src="../lib/guiLoader.js" type="module"></script>
     <script src="main.js" type="module"></script>

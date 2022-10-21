@@ -80,3 +80,7 @@ m-button {
 .titleInput {
   font-weight: bold;
 }
+
+.hidden {
+  display: none;
+}
