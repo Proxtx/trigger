@@ -4,7 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Triggers</title>
+    <title>Trigges</title>
+    <link rel="stylesheet" href="../lib/main.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="appBar">
+      <m-text><b>Unify - Flows - Triggers</b></m-text>
+    </div>
+    <div class="listContent">
+      <div class="box">
+        <input
+          type="text"
+          class="input titleInput"
+          value="Light Off on Home Leave"
+        />
+        <m-text>When</m-text>
+        <div class="triggerWrap">
+          <div type="text" class="input textSecondary">
+            <m-text>Nicolas leaves Home</m-text>
+          </div>
+          <img src="../lib/img/arrow.svg" />
+        </div>
+        <m-text>Then run</m-text>
+        <select class="input textSecondary">
+          <option value="turn Off">turn Off</option>
+        </select>
+        <div class="rightShift">
+          <m-button class="materialSecondary">Delete</m-button>
+        </div>
+      </div>
+      <m-button stretch="true">New</m-button>
+    </div>
+    <script src="../lib/guiLoader.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+  </body>
 </html>

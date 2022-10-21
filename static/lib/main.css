@@ -1,0 +1,82 @@
+:root {
+  --accentColor: #00916e;
+  --secondaryColor: #a167a5;
+  --borderRadius: 5px;
+  --bodyColor: #feefec;
+  --backgroundColor: #feefe5;
+  --contentSpacing: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bodyColor);
+}
+
+.appBar {
+  width: 100%;
+  padding: var(--contentSpacing);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: var(--accentColor);
+}
+
+.appBar m-text {
+  color: var(--bodyColor);
+}
+
+.box {
+  border-radius: var(--borderRadius);
+  background-color: var(--backgroundColor);
+  box-shadow: 0px 0px 6px 0px #00000040;
+  padding: var(--contentSpacing);
+  display: flex;
+  flex-direction: column;
+  gap: var(--contentSpacing);
+}
+
+.listContent {
+  display: flex;
+  gap: var(--contentSpacing);
+  flex-direction: column;
+  padding: var(--contentSpacing);
+}
+
+.input {
+  background-color: transparent;
+  border: 2px solid var(--secondaryColor);
+  border-radius: 0;
+  padding: calc(var(--contentSpacing) / 3);
+  font-size: 105%;
+  width: 60%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.rightShift {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: calc(var(--contentSpacing) / 2);
+}
+
+m-button {
+  --accentColor: #00916e;
+}
+
+.materialSecondary {
+  --accentColor: #a167a5;
+}
+
+.textSecondary {
+  color: var(--secondaryColor);
+}
+
+.titleInput {
+  font-weight: bold;
+}
