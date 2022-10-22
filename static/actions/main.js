@@ -40,7 +40,18 @@ const createActionFromDefinition = (name, definition) => {
     await saveAction(name, definition);
   });
 
+  let deleteButton = elem.getElementsByClassName("deleteButton")[0];
+  deleteButton.addEventListener("click", async () => {
+    await new Promise((r) => setTimeout(r, 500));
+    await deleteAction(name);
+    location.pathname = location.pathname;
+  });
+
   return elem;
+};
+
+const deleteAction = async (name) => {
+  await actions.deleteAction(cookie.pwd, name);
 };
 
 const renameAction = async (oldName, newName, definition) => {
@@ -60,6 +71,16 @@ const applyOptionArray = async (elem, options) => {
     oElem.value = option;
     elem.appendChild(oElem);
   }
+};
+
+const createAction = async (name) => {
+  await actions.setAction(cookie.pwd, name, {});
+};
+
+window.new = async () => {
+  await new Promise((r) => setTimeout(r, 500));
+  await createAction("New Action");
+  location.pathname = location.pathname;
 };
 
 applyActionDefinitions(actionDefinitions);

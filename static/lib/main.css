@@ -73,6 +73,11 @@ m-button {
   --accentColor: #a167a5;
 }
 
+.materialMain {
+  --accentColor: #00916e;
+  --backgroundColor: #feefe5;
+}
+
 .textSecondary {
   color: var(--secondaryColor);
 }
