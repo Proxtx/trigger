@@ -13,7 +13,6 @@ export const getTriggerGui = async (pwd, trigger) => {
 };
 
 export const setTrigger = async (pwd, name, trigger) => {
-  console.log(name);
   if (!(await auth(pwd))) return;
   getActions()[name].trigger = trigger;
   await saveActions();
