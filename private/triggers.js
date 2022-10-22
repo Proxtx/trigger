@@ -17,4 +17,6 @@ export const loadTriggers = async () => {
   }
 };
 
+export const checkTrigger = () => {};
+
 await loadTriggers();

@@ -22,6 +22,27 @@ const generateTriggerGui = async (triggerName) => {
   eval(guiData.handler);
 };
 
+const save = async () => {
+  let config = window.getTriggerConfiguration();
+  config.trigger = triggerSelect.value;
+  await trigger.setTrigger(cookie.pwd, localStorage.actionName, config);
+};
+
+const back = () => {
+  location.pathname = "../actions/";
+};
+
+window.back = async () => {
+  await new Promise((r) => setTimeout(r, 500));
+  back();
+};
+
+window.save = async () => {
+  await new Promise((r) => setTimeout(r, 500));
+  await save();
+  back();
+};
+
 triggerSelect.addEventListener("change", () => {
   generateTriggerGui(triggerSelect.value);
 });

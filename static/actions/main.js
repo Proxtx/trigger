@@ -15,7 +15,6 @@ const applyActionDefinitions = (actionDefinitions) => {
 
 const createActionFromDefinition = (name, definition) => {
   let elem = actionElem.cloneNode(true);
-  console.log(elem);
   let nameInput = elem.getElementsByClassName("actionName")[0];
   nameInput.value = name;
   nameInput.addEventListener("change", async () => {
