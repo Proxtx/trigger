@@ -51,7 +51,9 @@ const actionTriggerLoop = async () => {
   }
 };
 
-export const flows = await unifyGuiAPI.listFlows(config.unifyGuiAPI.pwd);
+export const getFlows = async () => {
+  return await unifyGuiAPI.listFlows(config.unifyGuiAPI.pwd);
+};
 
 await loadActions();
 actionTriggerLoop();

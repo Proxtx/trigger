@@ -2,7 +2,7 @@ import { auth } from "./meta.js";
 import {
   getActions as getActionsExport,
   saveActions,
-  flows,
+  getFlows as getFlowsExport,
 } from "../private/actions.js";
 
 export const getActions = async (pwd) => {
@@ -24,5 +24,5 @@ export const deleteAction = async (pwd, actionName) => {
 
 export const getFlows = async (pwd) => {
   if (!(await auth(pwd))) return;
-  return flows;
+  return await getFlowsExport();
 };
