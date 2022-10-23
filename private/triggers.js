@@ -17,11 +17,11 @@ export const loadTriggers = async () => {
   }
 };
 
-export const checkTrigger = async (triggerConfig) => {
+export const checkTrigger = async (triggerConfig, actionName) => {
   if (!triggerConfig.trigger) return false;
   let trigger = triggers[triggerConfig.trigger];
   if (!trigger) return false;
-  return await trigger.triggers(triggerConfig.data);
+  return await trigger.triggers(triggerConfig.data, actionName);
 };
 
 await loadTriggers();
