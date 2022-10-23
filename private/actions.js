@@ -30,7 +30,7 @@ const checkActionTriggers = async () => {
   for (let actionName in actions) {
     let action = actions[actionName];
     if (!action.trigger) continue;
-    if (await checkTrigger(action.trigger)) {
+    if (await checkTrigger(action.trigger, actionName)) {
       console.log("Triggered:", actionName);
       await runFlow(action.flow);
     }
