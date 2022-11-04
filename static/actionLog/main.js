@@ -21,6 +21,7 @@ const createLog = (logData) => {
 
 const createLogs = async () => {
   let logs = await actions.getLog(cookie.pwd);
+  logs.reverse();
   for (let log of logs) {
     content.appendChild(createLog(log));
   }
