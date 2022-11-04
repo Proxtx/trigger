@@ -21,10 +21,20 @@ body {
   padding: var(--contentSpacing);
   box-shadow: 0px 4px 4px 0px #00000040;
   background-color: var(--accentColor);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
 }
 
 .appBar m-text {
   color: var(--bodyColor);
+}
+
+.appBar m-button {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 .box {

@@ -83,4 +83,9 @@ window.new = async () => {
   location.pathname = location.pathname;
 };
 
+window.openLog = async () => {
+  await new Promise((r) => setTimeout(r, 500));
+  location.pathname = "actionLog";
+};
+
 applyActionDefinitions(actionDefinitions);

@@ -11,6 +11,7 @@ const unifyGuiAPI = await genCombine(
 );
 
 let actions;
+export let log = [];
 
 const loadActions = async () => {
   actions = JSON.parse(await fs.readFile("actions.json", "utf8")).actions;
@@ -32,13 +33,25 @@ const checkActionTriggers = async () => {
     if (!action.trigger) continue;
     if (await checkTrigger(action.trigger, actionName)) {
       console.log("Triggered:", actionName);
-      await runFlow(action.flow);
+      let result = await runFlow(action.flow);
+      try {
+        result = JSON.stringify(result);
+      } catch {}
+      log.push({
+        time: Date.now(),
+        actionName,
+        result,
+      });
+
+      if (log.length > 5) {
+        log.shift();
+      }
     }
   }
 };
 
 const runFlow = async (flow) => {
-  await unifyGuiAPI.runFlow(config.unifyGuiAPI.pwd, flow);
+  return await unifyGuiAPI.runFlow(config.unifyGuiAPI.pwd, flow);
 };
 
 const actionTriggerLoop = async () => {

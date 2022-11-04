@@ -10,7 +10,8 @@
   </head>
   <body>
     <div class="appBar">
-      <m-text><b>Unify - Flows - Actions</b></m-text>
+      <m-text><b>Unify - Flows - Actions</b></m-text
+      ><m-button onclick="window.openLog()">Open Log</m-button>
     </div>
     <div class="listContent" id="contentWrap">
       <m-button stretch="true" id="newButton" onclick="window.new()"
@@ -27,14 +28,12 @@
         <m-text>When</m-text>
         <div class="triggerWrap">
           <div type="text" class="input textSecondary">
-            <m-text class="triggerText">Nicolas leaves Home</m-text>
+            <m-text class="triggerText"></m-text>
           </div>
           <img class="triggerArrow" src="../lib/img/arrow.svg" />
         </div>
         <m-text>Then run</m-text>
-        <select class="input textSecondary flows">
-          <option value="turn Off">turn Off</option>
-        </select>
+        <select class="input textSecondary flows"></select>
         <div class="rightShift">
           <m-button class="materialSecondary deleteButton">Delete</m-button>
         </div>

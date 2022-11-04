@@ -3,6 +3,7 @@ import {
   getActions as getActionsExport,
   saveActions,
   getFlows as getFlowsExport,
+  log,
 } from "../private/actions.js";
 
 export const getActions = async (pwd) => {
@@ -25,4 +26,9 @@ export const deleteAction = async (pwd, actionName) => {
 export const getFlows = async (pwd) => {
   if (!(await auth(pwd))) return;
   return await getFlowsExport();
+};
+
+export const getLog = async (pwd) => {
+  if (!(await auth(pwd))) return;
+  return log;
 };
