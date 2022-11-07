@@ -61,7 +61,12 @@ const actionTriggerLoop = async () => {
     } catch (e) {
       console.log("Action Trigger Check failed. Error:", e);
     }
-    await new Promise((r) => setTimeout(r, 60000));
+    await new Promise((r) =>
+      setTimeout(
+        r,
+        config.triggerCheckInterval ? config.triggerCheckInterval : 60000
+      )
+    );
   }
 };
 

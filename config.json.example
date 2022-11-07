@@ -1,6 +1,7 @@
 {
   "port": 3000,
   "pwd": "YOUR_PWD",
+  "triggerCheckInterval": 60000,
   "unifyGuiAPI": {
     "url": "https://u.unify.api/api/",
     "pwd": "PASSWORD_FOR_THE_UNIFY_API"
