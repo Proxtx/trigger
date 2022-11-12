@@ -2,6 +2,8 @@ import fs from "fs/promises";
 import config from "@proxtx/config";
 import { resolve } from "path";
 
+let triggerIdResponses = {};
+
 export let triggers = {};
 
 export const loadTriggers = async () => {
@@ -21,7 +23,21 @@ export const checkTrigger = async (triggerConfig, actionName) => {
   if (!triggerConfig.trigger) return false;
   let trigger = triggers[triggerConfig.trigger];
   if (!trigger) return false;
-  return await trigger.triggers(triggerConfig.data, actionName);
+
+  let triggerResponse = await trigger.triggers(
+    triggerConfig.data,
+    triggerConfig
+  );
+  let returnBool = triggerResponse;
+
+  if (!triggerConfig.continuous) {
+    if (triggerIdResponses[triggerConfig.id]) returnBool = false;
+    else if (triggerResponse) returnBool = true;
+  }
+
+  triggerIdResponses[triggerConfig.id] = triggerResponse;
+
+  return returnBool;
 };
 
 await loadTriggers();

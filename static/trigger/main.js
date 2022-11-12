@@ -1,30 +1,8 @@
 const trigger = await framework.load("triggers.js");
-const triggers = await trigger.listTriggers(cookie.pwd);
-
-const triggerSelect = document.getElementById("triggerSelect");
-const triggerGui = document.getElementById("triggerGui");
-window.triggerGui = triggerGui;
-
-const applyOptionArray = async (elem, options) => {
-  elem.innerHTML = "";
-  for (let option of options) {
-    let oElem = document.createElement("option");
-    oElem.innerText = option;
-    oElem.value = option;
-    elem.appendChild(oElem);
-  }
-};
-
-const generateTriggerGui = async (triggerName) => {
-  let guiData = await trigger.getTriggerGui(cookie.pwd, triggerName);
-  triggerGui.innerHTML = guiData.html;
-  window.triggerGuiData = guiData.data;
-  eval(guiData.handler);
-};
+const triggerConfig = document.getElementById("triggerConfig");
 
 const save = async () => {
-  let config = window.getTriggerConfiguration();
-  config.trigger = triggerSelect.value;
+  let config = triggerConfig.component.getTriggerConfiguration();
   await trigger.setTrigger(cookie.pwd, localStorage.actionName, config);
 };
 
@@ -42,11 +20,3 @@ window.save = async () => {
   await save();
   back();
 };
-
-triggerSelect.addEventListener("change", () => {
-  generateTriggerGui(triggerSelect.value);
-});
-
-applyOptionArray(triggerSelect, triggers);
-triggerSelect.value = triggerSelect.children[0].value;
-generateTriggerGui(triggerSelect.value);

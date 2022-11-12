@@ -7,6 +7,10 @@ await loadPack("/modules/material/components/pack.json", {
   customStyleSheets: ["../../lib/overwrite.css"],
 });
 
+await loadPack("/lib/components/pack.json", {
+  urlPrefix: "/lib/",
+});
+
 for (let i of guiLoaded) {
   i();
 }

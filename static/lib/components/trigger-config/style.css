@@ -1,0 +1,14 @@
+#triggerGui {
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--secondaryColor);
+  overflow: scroll;
+  width: 100%;
+  min-height: 200px;
+  background-color: var(--bodyColor);
+  padding: var(--contentSpacing);
+}
+
+#continuousCheckWrap {
+  display: flex;
+  align-items: center;
+}

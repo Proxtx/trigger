@@ -1,0 +1,10 @@
+{
+  "components": {
+    "trigger-config": {
+      "name": "trigger-config",
+      "template": "/components/trigger-config/index.html",
+      "component": "/components/trigger-config/main.js",
+      "styles": ["/main.css", "/components/trigger-config/style.css"]
+    }
+  }
+}
