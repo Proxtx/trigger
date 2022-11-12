@@ -19,7 +19,7 @@ export const loadTriggers = async () => {
   }
 };
 
-export const checkTrigger = async (triggerConfig, actionName) => {
+export const checkTrigger = async (triggerConfig) => {
   if (!triggerConfig.trigger) return false;
   let trigger = triggers[triggerConfig.trigger];
   if (!trigger) return false;
