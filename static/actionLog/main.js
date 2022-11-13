@@ -12,9 +12,6 @@ const createLog = (logData) => {
   let date = document.createElement("m-text");
   date.innerText = new Date(logData.time).toLocaleString();
   box.appendChild(date);
-  let result = document.createElement("m-text");
-  result.innerText = logData.result;
-  box.appendChild(result);
 
   return box;
 };
