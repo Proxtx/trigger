@@ -33,14 +33,10 @@ const checkActionTriggers = async () => {
     if (!action.trigger) continue;
     if (await checkTrigger(action.trigger, actionName)) {
       console.log("Triggered:", actionName);
-      let result = await runAction(action.action);
-      try {
-        result = JSON.stringify(result);
-      } catch {}
+      await runAction(action.action);
       log.push({
         time: Date.now(),
         actionName,
-        result,
       });
 
       if (log.length > 5) {
