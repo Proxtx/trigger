@@ -6,7 +6,7 @@ import config from "@proxtx/config";
 
 const unifyGuiAPI = await genCombine(
   config.unifyGuiAPI.url,
-  "public/flow.js",
+  "public/api.js",
   genModule
 );
 
@@ -33,7 +33,7 @@ const checkActionTriggers = async () => {
     if (!action.trigger) continue;
     if (await checkTrigger(action.trigger, actionName)) {
       console.log("Triggered:", actionName);
-      let result = await runFlow(action.flow);
+      let result = await runAction(action.action);
       try {
         result = JSON.stringify(result);
       } catch {}
@@ -50,8 +50,14 @@ const checkActionTriggers = async () => {
   }
 };
 
-const runFlow = async (flow) => {
-  return await unifyGuiAPI.runFlow(config.unifyGuiAPI.pwd, flow);
+const runAction = async (action) => {
+  if (!action) return;
+  return await unifyGuiAPI.execute(
+    config.unifyGuiAPI.pwd,
+    action.appName,
+    action.method,
+    action.arguments
+  );
 };
 
 const actionTriggerLoop = async () => {
@@ -69,10 +75,5 @@ const actionTriggerLoop = async () => {
     );
   }
 };
-
-export const getFlows = async () => {
-  return await unifyGuiAPI.listFlows(config.unifyGuiAPI.pwd);
-};
-
 await loadActions();
 actionTriggerLoop();

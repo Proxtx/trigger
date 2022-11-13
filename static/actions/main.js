@@ -4,8 +4,6 @@ let actionElem = document.getElementById("action");
 let newButton = document.getElementById("newButton");
 let contentWrap = document.getElementById("contentWrap");
 
-const flows = await actions.getFlows(cookie.pwd);
-
 const applyActionDefinitions = (actionDefinitions) => {
   for (let name in actionDefinitions) {
     let elem = createActionFromDefinition(name, actionDefinitions[name]);
@@ -32,19 +30,33 @@ const createActionFromDefinition = (name, definition) => {
     location.pathname = "/trigger";
   });
 
-  let flowsElem = elem.getElementsByClassName("flows")[0];
-  applyOptionArray(flowsElem, flows);
-  flowsElem.value = definition.flow;
-  flowsElem.addEventListener("change", async () => {
-    definition.flow = flowsElem.value;
-    await saveAction(name, definition);
-  });
+  let actionIframe = elem.getElementsByClassName("actionCreatorIframe")[0];
+  (async () => {
+    await actionIframe.enableCombine("interaction");
+
+    if (definition.action) actionIframe.combine.importAction(definition.action);
+
+    let dimensions = await actionIframe.combine.size();
+    actionIframe.style.height = dimensions.height + "px";
+
+    while (true) {
+      await actionIframe.combine.resizeObserver();
+      let dimensions = await actionIframe.combine.size();
+      actionIframe.style.height = dimensions.height + "px";
+    }
+  })();
 
   let deleteButton = elem.getElementsByClassName("deleteButton")[0];
   deleteButton.addEventListener("click", async () => {
     await new Promise((r) => setTimeout(r, 500));
     await deleteAction(name);
     location.pathname = location.pathname;
+  });
+
+  let saveButton = elem.getElementsByClassName("saveButton")[0];
+  saveButton.addEventListener("click", async () => {
+    definition.action = await actionIframe.combine.getAction();
+    await saveAction(name, definition);
   });
 
   return elem;
