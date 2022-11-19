@@ -39,7 +39,7 @@ const checkActionTriggers = async () => {
         actionName,
       });
 
-      if (log.length > 5) {
+      if (log.length > 15) {
         log.shift();
       }
     }
