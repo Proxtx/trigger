@@ -31,18 +31,20 @@ const checkActionTriggers = async () => {
   for (let actionName in actions) {
     let action = actions[actionName];
     if (!action.trigger) continue;
-    if (await checkTrigger(action.trigger, actionName)) {
-      console.log("Triggered:", actionName);
-      await runAction(action.action);
-      log.push({
-        time: Date.now(),
-        actionName,
-      });
+    (async () => {
+      if (await checkTrigger(action.trigger, actionName)) {
+        console.log("Triggered:", actionName);
+        await runAction(action.action);
+        log.push({
+          time: Date.now(),
+          actionName,
+        });
 
-      if (log.length > 15) {
-        log.shift();
+        if (log.length > 15) {
+          log.shift();
+        }
       }
-    }
+    })();
   }
 };
 
