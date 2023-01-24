@@ -27,11 +27,15 @@ export const saveActions = async () => {
   await fs.writeFile("actions.json", JSON.stringify(currentActions));
 };
 
+let currentlyChecking = {};
+
 const checkActionTriggers = async () => {
   for (let actionName in actions) {
     let action = actions[actionName];
     if (!action.trigger) continue;
     (async () => {
+      if (currentlyChecking[action.trigger.id]) return;
+      currentlyChecking[action.trigger.id] = true;
       if (await checkTrigger(action.trigger, actionName)) {
         console.log("Triggered:", actionName);
         await runAction(action.action);
@@ -40,10 +44,12 @@ const checkActionTriggers = async () => {
           actionName,
         });
 
-        if (log.length > 15) {
+        if (log.length > 30) {
           log.shift();
         }
       }
+
+      currentlyChecking[action.trigger.id] = false;
     })();
   }
 };
