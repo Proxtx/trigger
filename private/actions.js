@@ -36,20 +36,25 @@ const checkActionTriggers = async () => {
     (async () => {
       if (currentlyChecking[action.trigger.id]) return;
       currentlyChecking[action.trigger.id] = true;
-      if (await checkTrigger(action.trigger, actionName)) {
-        console.log("Triggered:", actionName);
-        await runAction(action.action);
-        log.push({
-          time: Date.now(),
-          actionName,
-        });
+      try {
+        if (await checkTrigger(action.trigger, actionName)) {
+          console.log("Triggered:", actionName);
+          await runAction(action.action);
+          log.push({
+            time: Date.now(),
+            actionName,
+          });
 
-        if (log.length > 30) {
-          log.shift();
+          if (log.length > 30) {
+            log.shift();
+          }
         }
-      }
 
-      currentlyChecking[action.trigger.id] = false;
+        currentlyChecking[action.trigger.id] = false;
+      } catch (e) {
+        console.log(e);
+        currentlyChecking[action.trigger.id] = false;
+      }
     })();
   }
 };
