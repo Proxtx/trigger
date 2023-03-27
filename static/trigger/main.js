@@ -2,7 +2,7 @@ const trigger = await framework.load("triggers.js");
 const triggerConfig = document.getElementById("triggerConfig");
 
 const save = async () => {
-  let config = triggerConfig.component.getTriggerConfiguration();
+  let config = await triggerConfig.component.getTriggerConfiguration();
   await trigger.setTrigger(cookie.pwd, localStorage.actionName, config);
 };
 

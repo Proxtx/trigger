@@ -38,8 +38,8 @@ export class Component {
     let triggerGui = this.triggerGui;
     let triggerGuiData = guiData.data;
     let getTriggerConfiguration = (callback) => {
-      this.getTriggerConfiguration = () => {
-        let config = callback();
+      this.getTriggerConfiguration = async () => {
+        let config = await callback();
         config.trigger = this.triggerSelect.value;
         config.id = Math.floor(Math.random() * 100000);
         config.continuous = this.continuousCheck.component.checked;
