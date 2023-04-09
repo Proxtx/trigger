@@ -4,6 +4,7 @@ import {
   saveActions,
   log,
 } from "../private/actions.js";
+import config from "@proxtx/config";
 
 export const getActions = async (pwd) => {
   if (!(await auth(pwd))) return;
@@ -25,4 +26,14 @@ export const deleteAction = async (pwd, actionName) => {
 export const getLog = async (pwd) => {
   if (!(await auth(pwd))) return;
   return log;
+};
+
+export const getIframeSrc = async (pwd) => {
+  if (!(await auth(pwd))) return;
+
+  let srcUrl = new URL(config.unifyGuiAPI.url);
+  srcUrl.pathname = "/actionCreator";
+  srcUrl = srcUrl.href;
+
+  return srcUrl;
 };

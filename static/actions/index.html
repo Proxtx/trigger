@@ -33,12 +33,8 @@
           <img class="triggerArrow" src="../lib/img/arrow.svg" />
         </div>
         <m-text>Then run</m-text>
-        <iframe
-          src="iframeUrl"
-          width="100%"
-          height="100%"
-          class="actionCreatorIframe"
-        ></iframe>
+
+        <m-button stretch="true" class="loadAction">Load Action</m-button>
         <div class="rightShift">
           <m-button class="materialSecondary deleteButton">Delete</m-button
           ><m-button class="saveButton">Save</m-button>
@@ -47,9 +43,5 @@
     </div>
     <script src="../lib/guiLoader.js" type="module"></script>
     <script src="main.js" type="module"></script>
-    <script
-      src="private/actionCreatorIframeSrcProvider.js"
-      class="server"
-    ></script>
   </body>
 </html>

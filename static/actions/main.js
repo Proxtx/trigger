@@ -4,6 +4,8 @@ let actionElem = document.getElementById("action");
 let newButton = document.getElementById("newButton");
 let contentWrap = document.getElementById("contentWrap");
 
+const iframeSrc = await actions.getIframeSrc(cookie.pwd);
+
 const applyActionDefinitions = (actionDefinitions) => {
   for (let name in actionDefinitions) {
     let elem = createActionFromDefinition(name, actionDefinitions[name]);
@@ -30,8 +32,16 @@ const createActionFromDefinition = (name, definition) => {
     location.pathname = "/trigger";
   });
 
-  let actionIframe = elem.getElementsByClassName("actionCreatorIframe")[0];
-  (async () => {
+  let loadButton = elem.getElementsByClassName("loadAction")[0];
+  let actionIframe;
+
+  loadButton.addEventListener("click", async () => {
+    actionIframe = document.createElement("iframe");
+    actionIframe.classList.add("actionCreatorIframe");
+    actionIframe.width = "100%";
+    actionIframe.height = "100%";
+    actionIframe.src = iframeSrc;
+    loadButton.parentElement.replaceChild(actionIframe, loadButton);
     await actionIframe.enableCombine("interaction");
 
     if (definition.action) actionIframe.combine.importAction(definition.action);
@@ -44,7 +54,7 @@ const createActionFromDefinition = (name, definition) => {
       let dimensions = await actionIframe.combine.size();
       actionIframe.style.height = dimensions.height + "px";
     }
-  })();
+  });
 
   let deleteButton = elem.getElementsByClassName("deleteButton")[0];
   deleteButton.addEventListener("click", async () => {
