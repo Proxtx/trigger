@@ -1,3 +1,5 @@
+import * as _ from "/lib/guiLoader.js";
+
 const trigger = await framework.load("triggers.js");
 const triggerConfig = document.getElementById("triggerConfig");
 
@@ -20,3 +22,13 @@ window.save = async () => {
   await save();
   back();
 };
+
+let triggerConfigPreset = await trigger.getTrigger(
+  cookie.pwd,
+  localStorage.actionName
+);
+
+await uiBuilder.ready(triggerConfig);
+
+if (triggerConfigPreset)
+  triggerConfig.component.loadConfig(triggerConfigPreset);

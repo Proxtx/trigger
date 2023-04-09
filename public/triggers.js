@@ -17,3 +17,8 @@ export const setTrigger = async (pwd, name, trigger) => {
   getActions()[name].trigger = trigger;
   await saveActions();
 };
+
+export const getTrigger = async (pwd, name) => {
+  if (!(await auth(pwd))) return;
+  return getActions()[name].trigger;
+};

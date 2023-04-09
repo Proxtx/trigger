@@ -32,11 +32,13 @@ export class Component {
     }
   }
 
-  async generateTriggerGui(triggerName) {
+  async generateTriggerGui(triggerName, config = null) {
     let guiData = await this.trigger.getTriggerGui(cookie.pwd, triggerName);
+    if (config) this.continuousCheck.component.checked = config.continuous;
     this.triggerGui.innerHTML = guiData.html;
     let triggerGui = this.triggerGui;
     let triggerGuiData = guiData.data;
+    let triggerPresetData = config ? config.data : null;
     let getTriggerConfiguration = (callback) => {
       this.getTriggerConfiguration = async () => {
         let config = await callback();
@@ -47,5 +49,10 @@ export class Component {
       };
     };
     eval(guiData.handler);
+  }
+
+  async loadConfig(config) {
+    this.triggerSelect.value = config.trigger;
+    this.generateTriggerGui(config.trigger, config);
   }
 }
