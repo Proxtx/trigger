@@ -6,7 +6,7 @@ export class Component {
     this.triggerGui = this.document.getElementById("triggerGui");
     this.continuousCheck = this.document.getElementById("continuousCheck");
 
-    this.prepare();
+    this.prepareCall = this.prepare();
   }
 
   async prepare() {
