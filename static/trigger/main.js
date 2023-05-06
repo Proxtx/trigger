@@ -2,10 +2,12 @@ import * as _ from "/lib/guiLoader.js";
 
 const trigger = await framework.load("triggers.js");
 const triggerConfig = document.getElementById("triggerConfig");
+let url = new URL(location.href);
+let actionName = url.searchParams.get("actionName");
 
 const save = async () => {
   let config = await triggerConfig.component.getTriggerConfiguration();
-  await trigger.setTrigger(cookie.pwd, localStorage.actionName, config);
+  await trigger.setTrigger(cookie.pwd, actionName, config);
 };
 
 const back = () => {
@@ -23,10 +25,7 @@ window.save = async () => {
   back();
 };
 
-let triggerConfigPreset = await trigger.getTrigger(
-  cookie.pwd,
-  localStorage.actionName
-);
+let triggerConfigPreset = await trigger.getTrigger(cookie.pwd, actionName);
 
 await uiBuilder.ready(triggerConfig);
 

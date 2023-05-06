@@ -28,8 +28,10 @@ const createActionFromDefinition = (name, definition) => {
     : "No Trigger Set";
   let triggerArrow = elem.getElementsByClassName("triggerArrow")[0];
   triggerArrow.addEventListener("click", () => {
-    localStorage.actionName = name;
-    location.pathname = "/trigger";
+    let u = new URL(location.href);
+    u.pathname = "/trigger/";
+    u.searchParams.set("actionName", name);
+    window.location.href = u.href;
   });
 
   let loadButton = elem.getElementsByClassName("loadAction")[0];
