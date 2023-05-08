@@ -1,4 +1,7 @@
-import { triggers } from "../private/triggers.js";
+import {
+  triggers,
+  checkTrigger as checkTriggerPrivate,
+} from "../private/triggers.js";
 import { auth } from "./meta.js";
 import { getActions, saveActions } from "../private/actions.js";
 
@@ -21,4 +24,9 @@ export const setTrigger = async (pwd, name, trigger) => {
 export const getTrigger = async (pwd, name) => {
   if (!(await auth(pwd))) return;
   return getActions()[name].trigger;
+};
+
+export const checkTrigger = async (pwd, config) => {
+  if (!(await auth(pwd))) return;
+  return await checkTriggerPrivate(config);
 };

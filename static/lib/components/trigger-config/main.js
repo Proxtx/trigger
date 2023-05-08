@@ -5,6 +5,7 @@ export class Component {
     this.triggerSelect = this.document.getElementById("triggerSelect");
     this.triggerGui = this.document.getElementById("triggerGui");
     this.continuousCheck = this.document.getElementById("continuousCheck");
+    this.box = this.document.getElementById("box");
 
     this.prepareCall = this.prepare();
   }
