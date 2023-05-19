@@ -31,7 +31,7 @@ export const getLog = async (pwd) => {
 export const getIframeSrc = async (pwd) => {
   if (!(await auth(pwd))) return;
 
-  let srcUrl = new URL(config.unifyGuiAPI.url);
+  let srcUrl = new URL(config.guiUrl);
   srcUrl.pathname = "/actionCreator";
   srcUrl = srcUrl.href;
 

@@ -4,11 +4,7 @@ import { genModule } from "@proxtx/combine/combine.js";
 import { checkTrigger } from "./triggers.js";
 import config from "@proxtx/config";
 
-const unifyGuiAPI = await genCombine(
-  config.unifyGuiAPI.url,
-  "public/api.js",
-  genModule
-);
+const api = await genCombine(config.apps, "public/api.js", genModule);
 
 let actions;
 export let log = [];
@@ -54,8 +50,8 @@ const checkActionTriggers = async () => {
 
 const runAction = async (action) => {
   if (!action) return;
-  return await unifyGuiAPI.execute(
-    config.unifyGuiAPI.pwd,
+  return await api.execute(
+    config.pwd,
     action.appName,
     action.method,
     action.arguments
